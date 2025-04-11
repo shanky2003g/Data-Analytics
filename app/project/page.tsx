@@ -123,7 +123,7 @@ export default function ProjectPage() {
                 <CardContent className="space-y-6">
                   <div className="p-5 rounded-lg bg-indigo-800/40 border border-indigo-600/40">
                     <h3 className="text-xl font-semibold mb-1 text-blue-300">Course Instructor</h3>
-                    <p className="text-purple-100 text-lg">Dr. Nagmma Patil</p>
+                    <p className="text-purple-100 text-lg">Dr. Nagamma Patil</p>
                     <p className="text-purple-300 text-sm">Department of Information Technology, NITK</p>
                   </div>
 

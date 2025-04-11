@@ -87,7 +87,7 @@ export function StockMetrics({ stockData, ticker, sentimentAnalysis }: StockMetr
                       </div>
                       <div>
                         <h3 className="text-2xl font-bold text-white">{ticker}</h3>
-                        <p className="text-[#8ba3d4] text-sm">Last updated: {stockData.date[0]}</p>
+                        <p className="text-[#8ba3d4] text-sm">Last updated:  2025-04-11</p>
                       </div>
                     </div>
                     {sentimentAnalysis && (

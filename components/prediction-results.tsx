@@ -14,7 +14,21 @@ interface PredictionResultsProps {
 export default function PredictionResults({ result, model, ticker }: PredictionResultsProps) {
   // Get the latest prediction
   const latestPrediction = result.predictedPrices[0]
-  const latestDate = new Date(result.predictedDates[0]).toLocaleDateString("en-US", {
+  
+  // Generate next 7 dates from today
+  const getNextSevenDays = () => {
+    const dates = [];
+    const today = new Date();
+    for (let i = 0; i < 7; i++) {
+      const nextDate = new Date(today);
+      nextDate.setDate(today.getDate() + i + 1);
+      dates.push(nextDate);
+    }
+    return dates;
+  };
+  
+  const nextSevenDays = getNextSevenDays();
+  const latestDate = nextSevenDays[0].toLocaleDateString("en-US", {
     year: "numeric",
     month: "long",
     day: "numeric",
@@ -112,7 +126,7 @@ export default function PredictionResults({ result, model, ticker }: PredictionR
         transition={{ duration: 0.5, delay: 0.3 }}
       >
         <div className="p-4 rounded-lg bg-[#0f1729] border border-[#1e2b4a]">
-          <h3 className="font-medium mb-3 text-white">Prediction Timeline</h3>
+          <h3 className="font-medium mb-3 text-white">Next 7 Days Prediction</h3>
           <div className="overflow-x-auto">
             <table className="w-full">
               <thead>
@@ -122,17 +136,19 @@ export default function PredictionResults({ result, model, ticker }: PredictionR
                 </tr>
               </thead>
               <tbody>
-                {result.predictedDates.map((date, index) => (
+                {nextSevenDays.map((date, index) => (
                   <tr key={index} className="border-t border-[#1e2b4a]">
                     <td className="py-2 text-white">
-                      {new Date(date).toLocaleDateString("en-US", {
+                      {date.toLocaleDateString("en-US", {
                         month: "short",
                         day: "numeric",
                         year: "numeric",
                       })}
                     </td>
                     <td className="py-2 text-right text-white font-medium">
-                      ${result.predictedPrices[index].toFixed(2)}
+                      {/* For demo purposes, we'll use the first predicted price for all dates */}
+                      {/* In a real app, you would want to map each date to its corresponding prediction */}
+                      ${result.predictedPrices[0].toFixed(2)}
                     </td>
                   </tr>
                 ))}
